@@ -75,7 +75,7 @@ class Apriori():
                     curitem.sort()
                     curitem = ','.join(curitem)
                     # 如果一个k项集要成为候选集，必须保证它的所有子集都是频繁的
-                    if self.has_infresubset(curitem) == False and self.already_constains(curitem, new_list) == False:
+                    if self.has_infresubset(curitem) is False and self.already_constains(curitem, new_list) is False:
                         new_list.append(curitem)
         new_list.sort()
         return new_list
@@ -121,7 +121,7 @@ class Apriori():
         # 由于是逐层搜索的，所以对于Ck候选集只需要判断它的k-1子集是否包含非频繁集即可
         subset_list = self.get_subset(item.split(","))
         for item_list in subset_list:
-            if self.already_constains(item_list, self.fre_list) == False:
+            if self.already_constains(item_list, self.fre_list) is False:
                 return True
         return False
 
@@ -169,7 +169,7 @@ class Apriori():
     def remove_dumplicate(self, arr):
         newlist = list()
         for i in range(0, len(arr)):
-            if self.already_constains(arr[i], newlist) == False:
+            if self.already_constains(arr[i], newlist) is False:
                 newlist.append(arr[i])
         return newlist
 
@@ -206,7 +206,7 @@ class Apriori():
         keys = [curkey for curkey in keys]
         for curkey in keys:
             # self.apriori[curkey] = curdict[curkey]
-            self.apriori.append({curkey:curdict[curkey]})
+            self.apriori.append({curkey: curdict[curkey]})
 
     def cal_associative_rule(self, frelist):
         rule_list = list()
@@ -240,6 +240,7 @@ class Apriori():
             return 0
         rule_confidency = float(support1) / float(support2)
         return rule_confidency
+
 
 if __name__ == '__main__':
     data = [
